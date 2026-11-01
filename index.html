@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MabTower - SimTower WebAssembly & WebGL</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <!-- Top UI Header (Infobar Fixada em Cima) -->
+        <header id="ui-header">
+            <div class="hud-card">
+                <div class="hud-item">
+                    <span class="hud-label">Fundos</span>
+                    <span class="hud-value" id="funds-display">$100,000</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">População</span>
+                    <span class="hud-value" id="pop-display" style="color: #00a8ff;">0</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">Avaliação</span>
+                    <span class="hud-value" style="color: #fbc531;">★ 1</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Container Central com Canvas e Scrollbars -->
+        <div id="viewport-container">
+            <canvas id="gameCanvas"></canvas>
+            
+            <div id="v-scrollbar">
+                <div id="v-scrollbar-content" style="height: 3520px;"></div>
+            </div>
+
+            <!-- Barra de Rolagem Horizontal (375 colunas * 32px = 12000px) -->
+            <div id="h-scrollbar">
+                <div id="h-scrollbar-content" style="width: 12000px;"></div>
+            </div>
+        </div>
+
+        <!-- Barra de Ferramentas de Construção (Fixada Embaixo) -->
+        <footer id="toolbar">
+            <button class="tool-btn active" data-tool="OFFICE" onclick="selectTool(this, 'OFFICE')">
+                🏢 Escritório
+            </button>
+            <button class="tool-btn" data-tool="LOBBY" onclick="selectTool(this, 'LOBBY')">
+                🏛️ Lobby
+            </button>
+            <button class="tool-btn" data-tool="CONDOMINIUM" onclick="selectTool(this, 'CONDOMINIUM')">
+                🏠 Condomínio
+            </button>
+            <button class="tool-btn" data-tool="ELEVATOR" onclick="selectTool(this, 'ELEVATOR')">
+                🛗 Elevador
+            </button>
+            <button class="tool-btn" data-tool="DEMOLISH" onclick="selectTool(this, 'DEMOLISH')" style="background:#c0392b;">
+                🧹 Demolir
+            </button>
+        </footer>
+
+        <script>
+            function selectTool(btn, toolName) {
+                document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                if (window.setSimTool) {
+                    window.setSimTool(toolName);
+                }
+            }
+        </script>
+
+        <script type="module" src="src/js/main.js"></script>
+    </body>
+</html>

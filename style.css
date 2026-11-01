@@ -1,0 +1,169 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Infobar Fixada no Topo (100% de Largura) --- */
+#ui-header {
+    width: 100%;
+    background: #1e1e28;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.hud-card {
+    background: rgba(30, 30, 40, 0.85);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 8px 20px;
+    border-radius: 8px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.hud-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hud-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #8a8a9b;
+}
+
+.hud-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4cd137;
+}
+
+/* --- Container Central com o Canvas e Scrollbars Nativas --- */
+#viewport-container {
+    flex: 1;
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+    background-color: #14171f;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+    cursor: grab;
+}
+
+#gameCanvas:active {
+    cursor: grabbing;
+}
+
+/* Barra de Rolagem Vertical */
+#v-scrollbar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 14px;
+    height: 100%;
+    background: rgba(20, 23, 31, 0.5);
+    z-index: 5;
+    overflow-y: scroll;
+}
+#v-scrollbar-content {
+    width: 1px;
+    height: 4000px; /* Altura virtual do mapa da torre */
+}
+
+/* Barra de Rolagem Horizontal */
+#h-scrollbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 14px;
+    background: rgba(20, 23, 31, 0.5);
+    z-index: 5;
+    overflow-x: scroll;
+}
+#h-scrollbar-content {
+    height: 1px;
+    width: 4000px; /* Largura virtual do mapa da torre */
+}
+
+/* Estilização elegante das barras de rolagem */
+#v-scrollbar::-webkit-scrollbar, #h-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+#v-scrollbar::-webkit-scrollbar-thumb, #h-scrollbar::-webkit-scrollbar-thumb {
+    background: #3b4252;
+    border-radius: 5px;
+}
+#v-scrollbar::-webkit-scrollbar-thumb:hover, #h-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #4c566a;
+}
+
+/* --- Toolbar Fixada Embaixo (100% de Largura) --- */
+#toolbar {
+    width: 100%;
+    background: #1e1e28;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.tool-btn {
+    background: #2f3640;
+    color: #f5f6fa;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tool-btn:hover {
+    background: #487eb0;
+}
+
+.tool-btn.active {
+    background: #44bd32;
+    border-color: #4cd137;
+    box-shadow: 0 0 8px rgba(76, 209, 55, 0.4);
+}
